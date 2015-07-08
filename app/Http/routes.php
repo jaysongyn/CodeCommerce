@@ -10,7 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+Route::get('categories', 'CategoryController@index');
+Route::get('admin/categories', 'AdminCategoriesController@index');
+Route::get('admin/products', 'AdminProductsController@index');
 Route::get('/', function () {
     return view('welcome');
 });
