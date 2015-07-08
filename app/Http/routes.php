@@ -10,9 +10,27 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('categories', 'CategoryController@index');
-Route::get('admin/categories', 'AdminCategoriesController@index');
-Route::get('admin/products', 'AdminProductsController@index');
+Route::pattern('id','[0-9]+');
+Route::group(['prefix' => 'admin'], function()
+{
+	Route::group(['prefix' => 'categories'], function()
+	{
+		Route::get('list', 'AdminCategoriesController@index');
+		Route::get('delete/{id?}', 'AdminCategoriesController@destroy');
+		Route::get('update/{id?}', 'AdminCategoriesController@update');
+		Route::get('edit/{id?}', 'AdminCategoriesController@edit');
+		Route::get('store', 'AdminCategoriesController@store');
+	});	
+	Route::group(['prefix' => 'products'], function()
+	{
+		Route::get('list', 'AdminProductsController@index');
+		Route::get('delete/{id?}', 'AdminProductsController@destroy');
+		Route::get('update/{id?}', 'AdminProductsController@update');
+		Route::get('edit/{id?}', 'AdminProductsController@edit');
+		Route::get('store', 'AdminProductsController@store');
+	});	
+});
+
 Route::get('/', function () {
     return view('welcome');
 });

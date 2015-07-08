@@ -47,8 +47,8 @@ class AdminProductsController extends Controller
      */
     public function store()
     {
-        //
-    }
+        return "store";
+    }    
 
     /**
      * Display the specified resource.
@@ -69,7 +69,8 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "edit $id";
+    
     }
 
     /**
@@ -80,8 +81,8 @@ class AdminProductsController extends Controller
      */
     public function update($id)
     {
-        //
-    }
+        return "update $id";
+    }    
 
     /**
      * Remove the specified resource from storage.
@@ -91,6 +92,6 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "delete $id";
     }
 }
