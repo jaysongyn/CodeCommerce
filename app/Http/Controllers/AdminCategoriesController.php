@@ -12,10 +12,10 @@ use CodeCommerce\Category;
 class AdminCategoriesController extends Controller
 {
 
-    private $categories;
+    private $categoryModel;
     public function __construct(Category $category)
     {
-        $this->categories = $category;
+        $this->categoryModel = $category;
     }
 
     /**
@@ -25,9 +25,9 @@ class AdminCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = $this->categories->all();
+        $categories = $this->categoryModel->all();
 
-         return view('adminCategories',compact('categories'));
+         return view('categories.index',compact('categories'));
     }
 
     /**
@@ -37,7 +37,7 @@ class AdminCategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -45,9 +45,15 @@ class AdminCategoriesController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\CategoryRequest $request)
     {
-        return "store";
+       $input = $request->all();
+
+       $category = $this->categoryModel->fill($input);
+
+       $category->save();
+
+       return redirect()->route('categories.index');
     }    
 
     /**
@@ -69,7 +75,10 @@ class AdminCategoriesController extends Controller
      */
     public function edit($id)
     {
-        return "edit $id";
+       
+       $category = $this->categoryModel->find($id);
+
+       return view ('categories.edit',compact('category'));
     
     }
 
@@ -79,9 +88,11 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Requests\CategoryRequest $request,$id)
     {
-        return "update $id";
+        $this->categoryModel->find($id)->update($request->all());
+       
+        return redirect()->route('categories.index');
     }    
 
     /**
@@ -92,6 +103,8 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        return "delete $id";
+        $this->categoryModel->find($id)->delete();
+
+        return redirect()->route('categories.index');
     }
 }

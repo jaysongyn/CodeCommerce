@@ -12,11 +12,11 @@ use CodeCommerce\Product;
 class AdminProductsController extends Controller
 {
 
-    private $products;
+    private $productModel;
 
     public function __construct(Product $product)
     {
-        $this->products = $product;
+        $this->productModel = $product;
     }
     /**
      * Display a listing of the resource.
@@ -25,9 +25,9 @@ class AdminProductsController extends Controller
      */
     public function index()
     {
-        $products = $this->products->all();
+        $products = $this->productModel->all();
 
-        return view('adminProducts', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -37,7 +37,7 @@ class AdminProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -45,9 +45,15 @@ class AdminProductsController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Requests\ProductRequest $Request)
     {
-        return "store";
+        $input = $Request->all();
+
+        $products = $this->productModel->fill($input);
+
+        $products->save();
+
+        return redirect()->route('products.index');
     }    
 
     /**
@@ -69,8 +75,9 @@ class AdminProductsController extends Controller
      */
     public function edit($id)
     {
-        return "edit $id";
-    
+        $product = $this->productModel->find($id);
+
+        return view('products.edit',compact('product'));    
     }
 
     /**
@@ -79,9 +86,13 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(requests\ProductRequest $request,$id)
     {
-        return "update $id";
+        $this->productModel->find($id)->update($request->all());
+
+        return redirect()->route('products.index');
+
+
     }    
 
     /**
@@ -92,6 +103,8 @@ class AdminProductsController extends Controller
      */
     public function destroy($id)
     {
-        return "delete $id";
+        $this->productModel->find($id)->delete();
+
+        return redirect()->route('products.index');
     }
 }
