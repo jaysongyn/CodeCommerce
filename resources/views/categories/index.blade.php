@@ -30,8 +30,8 @@
 					<a href="{{ route('categories.destroy',['id'=> $category->id]) }}">Delete</a>
 				</td>		
 			</tr>	
-			@endforeach
-			
-		</table>	
+			@endforeach			
+		</table>
+		{!! $categories->render() !!}	
 	</div>			
 @endsection('content')

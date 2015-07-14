@@ -11,6 +11,7 @@ class ProductTableSeeder extends Seeder
 		DB::table('products')->truncate();
 
 		factory('CodeCommerce\Product')->create([
+			'category_id' => '1',
 			'name' => 'Lapis',
 			'description' => 'Colorido',
 			'price' => '10'

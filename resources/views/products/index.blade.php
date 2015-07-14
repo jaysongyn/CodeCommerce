@@ -11,6 +11,7 @@
 				<th>ID</th>
 				<th>Name</th>
 				<th>Description</th>
+				<th>Category</th>
 				<th>Price</th>
 				<th>Action</th>
 			</tr>	
@@ -18,16 +19,19 @@
 			@foreach($products as $product)
 			<tr>	
 				<td>
-					{{$product->id}}
+					{{ $product->id }}
 				</td>
 				<td>
-					{{$product->name}}
+					{{ $product->name }}
 				</td>	
 				<td>
-					{{$product->description}}
+					{{ $product->description }}
 				</td>
 				<td>
-					{{$product->price}}
+					{{ $product->category->name }}
+				</td>
+				<td>
+					{{ $product->price }}
 				</td>		
 				<td>
 					<a href="{{ route('products.edit',['id'=> $product->id]) }}">Edit</a> |
@@ -37,5 +41,6 @@
 			@endforeach
 			
 		</table>	
+		{!! $products->render() !!}
 	</div>			
 @endsection('content')

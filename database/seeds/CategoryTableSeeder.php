@@ -3,12 +3,14 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use CodeCommerce\Category;
+use CodeCommerce\products;
 
 class CategoryTableSeeder extends Seeder
 {
 	public function run()
 	{
-		DB::table('categories')->truncate();
+		DB::table('products')->truncate();
+		//DB::table('categories')->truncate();
 
 		factory('CodeCommerce\Category')->create([
 			'name' => 'Computer',
