@@ -15,8 +15,28 @@ class Product extends Model
         'recommend',
     ];
 
+    public function images()
+    {
+        return $this->hasMany('CodeCommerce\ProductImage');
+    }
+
     public function category()
     {
     	return $this->belongsTo('CodeCommerce\Category');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('CodeCommerce\Tag');
+    }
+
+    public function scopeFeatured($query)
+    {
+        return $query->where('featured','=',1);
+    }
+
+    public function scopeRecomend($query)
+    {
+        return $query->where('recommend','=',1);
     }
 }
