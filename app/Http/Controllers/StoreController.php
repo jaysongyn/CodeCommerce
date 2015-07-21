@@ -21,4 +21,29 @@ class StoreController extends Controller
     	$categories = $category->all();
     	return view('store.index',compact('categories','pFeatured','pRecomended'));
     }
+
+    public function productsCategory(Category $category, Product $product,$id)
+    {
+    	$categories = $category->all();
+
+    	$category = $category->find($id);
+
+    	$prodcutsCateogry = $product->ofCategory($id)->get();
+    	
+    	
+    	return view('store.productsCategory',compact('categories','category','prodcutsCateogry'));
+    }
+
+    public function productDetail(Category $category, Product $products,$id)
+    {
+        $categories = $category->all();
+        
+        $product = $products->find($id);
+
+     
+                
+        return view('store.productDetail',compact('categories','product'));
+    }
+    
+
 }

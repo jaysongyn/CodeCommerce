@@ -111,8 +111,14 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(ProductImage $image, $id)
     {
+        $images = $image->ofProduct($id)->get();
+
+        foreach ($images as $image) {
+            $this->destroyImage($image,$image->id);
+        }
+
         $this->productModel->find($id)->delete();
 
         return redirect()->route('products.index');

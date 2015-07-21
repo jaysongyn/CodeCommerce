@@ -15,4 +15,11 @@ class ProductImage extends Model
     {
     	return $this->belongsTo('CodeCommerce\Product');
     }
+
+     public function scopeOfProduct($query,$id)
+    {
+        return $query->where('product_id','=',$id);
+    }
+
+
 }
