@@ -20,17 +20,17 @@
 
 
 		<div class="form-group">
-			{!! Form::label('name'), 'Name:' !!}
+			{!! Form::label('name', 'Name:') !!}
 			{!! Form::text('name', $product->name, ['class'=>'form-control']) !!}			
 		</div>	
 
 		<div class="form-group">
-			{!! Form::label('description'), 'Description:' !!}
+			{!! Form::label('description', 'Description:') !!}
 			{!! Form::textarea('description', $product->description, ['class'=>'form-control']) !!}			
 		</div>	
 
 		<div class="form-group">
-			{!! Form::label('price'), 'Price:' !!}
+			{!! Form::label('price', 'Price:') !!}
 			{!! Form::text('price', $product->price, ['class'=>'form-control']) !!}			
 		</div>	
 
@@ -38,13 +38,17 @@
 			{!! Form::hidden('featured', false) !!}
 			{!! Form::label('featured', 'Featured:') !!}
 			{!! Form::checkbox('featured','1' , $product->featured) !!}			
+		
+			{!! Form::hidden('recommend', false) !!}
+			{!! Form::label('recommend', ' Recommend:') !!}
+			{!! Form::checkbox('recommend', '1', $product->recommend) !!}			
 		</div>	
 
 		<div class="form-group">
-			{!! Form::hidden('recommend', false) !!}
-			{!! Form::label('recommend', 'Recommend:') !!}
-			{!! Form::checkbox('recommend', '1', $product->recommend) !!}			
+			{!! Form::label('tag', 'Tags:') !!}
+			{!! Form::textarea('tag',$product->tagList, ['class'=>'form-control']) !!}			
 		</div>	
+
 
 		<div class='form-group'>
 			{!! Form::submit('Save Product', ['Class'=>'btn btn-primary ']) !!}

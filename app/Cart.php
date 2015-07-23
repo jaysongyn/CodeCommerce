@@ -25,7 +25,7 @@ class Cart
      
     }
 
-    public function remove()
+    public function remove($id)
     {
     	unset($this->items[$id]);
     }

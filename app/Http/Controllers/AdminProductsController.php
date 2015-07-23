@@ -9,6 +9,7 @@ use CodeCommerce\Http\Controllers\Controller;
 
 use CodeCommerce\Product;
 use CodeCommerce\Category;
+use CodeCommerce\Tag;
 use CodeCommerce\ProductImage;
 
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,7 @@ class AdminProductsController extends Controller
     private $productModel;
 
     public function __construct(Product $product)
-    {
+    {       
         $this->productModel = $product;
     }
     /**
@@ -52,13 +53,20 @@ class AdminProductsController extends Controller
      *
      * @return Response
      */
-    public function store(Requests\ProductRequest $Request)
+    public function store(Requests\ProductRequest $request)
     {
-        $input = $Request->all();
+
+        $input = $request->except('tag');
+
+        $imputTag = $request->input('tag');
+
+        $tags = explode(',', $imputTag);
 
         $products = $this->productModel->fill($input);
 
         $products->save();
+
+        $this->storeTag($tags,$products->id);
 
         return redirect()->route('products.index');
     }    
@@ -96,9 +104,17 @@ class AdminProductsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(requests\ProductRequest $request,$id)
+    public function update(requests\ProductRequest $request, Tag $tagModel,$id)
     {
-        $this->productModel->find($id)->update($request->all());
+        $input = $request->except('tag');
+
+        $imputTag = $request->input('tag');
+
+        $tags = explode(',', $imputTag);
+
+        $this->storeTag($tags,$id);
+
+        $this->productModel->find($id)->update($input);        
 
         return redirect()->route('products.index');
 
@@ -168,5 +184,22 @@ class AdminProductsController extends Controller
 
         return redirect()->route('products.images', ['id'=>$product->id]);
         
+    }
+
+    private function storeTag($inputTags, $id)
+    {
+        $tag = new Tag();
+
+        $countTags = count($inputTags);
+     
+        foreach ($inputTags as $key => $value) {
+       
+            $newTag = $tag->firstOrCreate(["name" => $value]);
+            $idTags[] = $newTag->id;
+        }
+              
+        $product = $this->productModel->find($id);
+        $product->tags()->sync($idTags);
+       
     }
 }

@@ -36,11 +36,14 @@
 		<div class="form-group">
 			{!! Form::label('featured', 'Featured:') !!}
 			{!! Form::checkbox('featured') !!}			
+	
+			{!! Form::label('recommend', 'Recommend:') !!}
+			{!! Form::checkbox('recommend') !!}			
 		</div>	
 
 		<div class="form-group">
-			{!! Form::label('recommend', 'Recommend:') !!}
-			{!! Form::checkbox('recommend') !!}			
+			{!! Form::label('tag', 'Tags:') !!}
+			{!! Form::textarea('tag',null, ['class'=>'form-control']) !!}			
 		</div>	
 
 

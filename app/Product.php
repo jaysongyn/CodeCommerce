@@ -44,4 +44,12 @@ class Product extends Model
     {
         return $query->where('category_id','=',$id);
     }
+
+    public function getTagListAttribute()
+    {
+        $tags = $this->tags->lists('name')->toArray();
+        return implode(',',$tags);
+    }
+
+
 }

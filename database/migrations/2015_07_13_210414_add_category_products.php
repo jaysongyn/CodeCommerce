@@ -26,7 +26,8 @@ class AddCategoryProducts extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->removeColumn('category_id');
+            $table->dropForeign('products_category_id_foreign');  
+                        
         });
     }
 }

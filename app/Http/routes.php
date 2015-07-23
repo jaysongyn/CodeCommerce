@@ -11,7 +11,7 @@
 |
 */
 Route::pattern('id','[0-9]+');
-Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']],  function()
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'where' => ['id' => '[0-9]+']],  function()
 {
 	Route::group(['prefix' => 'categories'], function()
 	{
@@ -47,6 +47,14 @@ Route::group(['prefix' => 'admin', 'where' => ['id' => '[0-9]+']],  function()
 Route::get('/', 'StoreController@index');
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@productsCategory']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@productDetail']);
-Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
 
+Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
 Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
+
+Route::get('checkout/placeOrder', ['as' => 'checkout.place', 'uses' => 'CheckoutController@place']);
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'passord' => 'Auth\PasswordController'
+]);
