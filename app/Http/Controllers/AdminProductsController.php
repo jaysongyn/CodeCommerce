@@ -189,12 +189,10 @@ class AdminProductsController extends Controller
     private function storeTag($inputTags, $id)
     {
         $tag = new Tag();
-
-        $countTags = count($inputTags);
-     
+        
         foreach ($inputTags as $key => $value) {
        
-            $newTag = $tag->firstOrCreate(["name" => $value]);
+            $newTag = $tag->firstOrCreate(["name" => trim($value)]);
             $idTags[] = $newTag->id;
         }
               
