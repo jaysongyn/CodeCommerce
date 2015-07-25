@@ -53,10 +53,27 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="http://commerce.dev:10088/checkout"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="http://commerce.dev:10088/cart"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
-                            <li><a href="http://commerce.dev:10088/auth/login"><i class="fa fa-lock"></i> Login</a></li>
+                            <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
+                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>                           
+                            <ul class="nav navbar-nav navbar-right">
+                                @if (Auth::guest())
+                                 <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Conta<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ url('/auth/login') }}"><i class="fa fa-lock"></i> Logar</a></li>
+                                            <li><a href="{{ url('/auth/register') }}"><i class="fa fa-pencil" ></i> Registrar</a></li>
+                                        </ul>
+                                    </li>
+                                    
+                                @else
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            </ul>
                         </ul>
                     </div>
                 </div>

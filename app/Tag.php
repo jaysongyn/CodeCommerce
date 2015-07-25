@@ -14,3 +14,4 @@ class Tag extends Model
         return $this->belongsToMany('CodeCommerce\Products');
     }
 }
+	
