@@ -48,6 +48,8 @@ Route::get('/', 'StoreController@index');
 Route::get('/home', 'StoreController@index');
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@productsCategory']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@productDetail']);
+Route::get('tag/{id}', ['as' => 'store.tag', 'uses' => 'StoreController@porudctTag']);
+
 
 Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
 Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);

@@ -44,6 +44,18 @@
                                         </a>
                                 </span>
             </div>
+            <div class="product-information"><!--/product-information-->
+
+                <h2>Tags</h2>
+                <p>
+                @foreach($product->tags as $tag)
+
+                    <a href="{{ route('store.tag',['id' => $tag->id] )}}" >| {{ $tag->name }}</a>
+
+                @endforeach
+                </p>
+
+            </div>
             <!--/product-information-->
         </div>
     </div>

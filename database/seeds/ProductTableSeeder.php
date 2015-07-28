@@ -1,8 +1,7 @@
 <?php 
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-use CodeCommerce\Product;
+
 
 class ProductTableSeeder extends Seeder
 {
@@ -17,7 +16,7 @@ class ProductTableSeeder extends Seeder
 			'price' => '10'
 		]);
 
-		factory('CodeCommerce\Product',10)->create();		
+		factory('CodeCommerce\Product',100)->create();
 	}
 	
 }

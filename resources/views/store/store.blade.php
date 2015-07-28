@@ -124,13 +124,9 @@
 
 <section>
     <div class="container">
-        <div class="row">
+        @yield('categories')
+        @yield('content')
 
-               @yield('categories')
-               
-               @yield('content')
-
-        </div>
     </div>
     <div class="common-modal modal fade" id="common-Modal1" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">

@@ -35,3 +35,16 @@ $factory->define(CodeCommerce\Product::class, function ($faker) {
 		'price' => $faker->randomNumber(2)
 	];
 });
+
+$factory->define(CodeCommerce\Tag::class, function ($faker) {
+    return [
+        'name' => $faker->word()
+    ];
+});
+
+$factory->define(CodeCommerce\ProductTag::class, function ($faker) {
+    return [
+        'product_id' => $faker->numberBetween(1,10),
+        'tag_id' => $faker->numberBetween(1,10)
+    ];
+});
