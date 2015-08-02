@@ -21,10 +21,16 @@ class Cart
                 'name' => $name
             ]
         ];
-
-     
     }
-
+    public function removeOne($id)
+    {
+        if($this->items[$id]['qtd'] <= 1)
+        {
+            $this->remove($id);
+        }else{
+            $this->items[$id]['qtd']--;
+        }
+    }
     public function remove($id)
     {
     	unset($this->items[$id]);

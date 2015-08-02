@@ -3,7 +3,7 @@
 @section('categories')
     @include('store.partial.categories')
 @stop
-    
+
 
 @section('content')
 <div class="col-sm-9 padding-right">

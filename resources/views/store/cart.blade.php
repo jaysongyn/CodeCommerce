@@ -34,6 +34,9 @@
 
 								<td class="cart_quantity">							
 									{{ $item['qtd'] }}
+									<a href="{{route('cart.add', ['id' => $k]) }}" style="margin: 5px;" class="glyphicon glyphicon-plus" ></a>
+									<a href="{{route('cart.remove', ['id' => $k]) }}" class="glyphicon glyphicon-minus" ></a>
+
 								</td>
 								
 								<td class="cart_total">							

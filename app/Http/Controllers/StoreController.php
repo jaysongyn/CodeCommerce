@@ -64,7 +64,6 @@ class StoreController extends Controller
         $productsTag = $this->tag->find($id);
 
         $tags = $this->tag->all();
-
         //  dd($product->tags);
         return view('store.productsTag',compact('categories','tags', 'productsTag'));
     }

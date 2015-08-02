@@ -53,6 +53,7 @@ Route::get('tag/{id}', ['as' => 'store.tag', 'uses' => 'StoreController@porudctT
 
 Route::get('cart', ['as' => 'cart', 'uses' => 'CartController@index']);
 Route::get('cart/add/{id}', ['as' => 'cart.add', 'uses' => 'CartController@add']);
+Route::get('cart/remove/{id}', ['as' => 'cart.remove', 'uses' => 'CartController@remove']);
 Route::get('cart/destroy/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
 
 Route::group(['middleware' => 'auth'],  function()
