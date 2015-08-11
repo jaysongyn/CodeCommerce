@@ -53,8 +53,13 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
+                            @if(!Auth::guest())
+                                @if (Auth::user()->is_admin)
+                                    <li><a href="{{ route('products.index') }}"><i class="fa fa-lock"></i>Admin</a></li>
+                                @endif
+                            @endif
                             <li><a href="{{ route('account.orders') }}"><i class="fa fa-user"></i> Minha conta</a></li>
-                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>                           
+                            <li><a href="{{ route('cart') }}"><i class="fa fa-shopping-cart"></i> Carrinho</a></li>
                             <ul class="nav navbar-nav navbar-right">
                                 @if (Auth::guest())
                                  <li class="dropdown">

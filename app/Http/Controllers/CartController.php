@@ -5,7 +5,7 @@ namespace CodeCommerce\Http\Controllers;
 use Illuminate\Http\Request;
 
 use CodeCommerce\Cart;
-use CodeCommerce\product;
+use CodeCommerce\Product;
 
 use Illuminate\Support\Facades\Session;
 

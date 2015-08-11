@@ -30,7 +30,7 @@ class CheckoutController extends Controller
     		return false;
     	}	
 
-        $checkout = $checkoutService->createCheckoutBuilder();
+       // $checkout = $checkoutService->createCheckoutBuilder();
 
     	$cart = Session::get('cart');
 
@@ -42,7 +42,7 @@ class CheckoutController extends Controller
 
     		foreach($cart->all() as $k => $item)
     		{
-                $checkout->addItem(new Item($k, $item['name'], number_format($item['price'],2,".",""), $item['qtd']));
+               // $checkout->addItem(new Item($k, $item['name'], number_format($item['price'],2,".",""), $item['qtd']));
     			$order->items()->create(['product_id' => $k, 'price' => $item['price'], 'qtd' => $item['qtd']]);
     		}	
 
@@ -50,9 +50,11 @@ class CheckoutController extends Controller
 
             //event( new CheckoutEvent());
 
-            $response = $checkoutService->checkout($checkout->getCheckout());
+            //$response = $checkoutService->checkout($checkout->getCheckout());
 
-            return  redirect($response->getRedirectionUrl());
+           // return  redirect($response->getRedirectionUrl());
+
+            return redirect()->route('account.orders');
     	}	
 
        

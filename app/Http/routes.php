@@ -10,9 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::pattern('id','[0-9]+');
-Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'where' => ['id' => '[0-9]+']],  function()
+Route::group(['prefix' => 'admin', 'middleware' =>['auth','admin'], 'where' => ['id' => '[0-9]+']],  function()
 {
+
 	Route::group(['prefix' => 'categories'], function()
 	{
 		Route::get('', ['as' => 'categories.index', 'uses' => 'AdminCategoriesController@index']);
@@ -21,7 +23,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'where' => ['id' => '
 		Route::get('{id}/edit',  ['as' => 'categories.edit', 'uses' => 'AdminCategoriesController@edit']);
 		Route::post('',  ['as' => 'categories.store', 'uses' => 'AdminCategoriesController@store']);
 		Route::get('create',  ['as' => 'categories.create', 'uses' => 'AdminCategoriesController@create']);
-	});	
+	});	-
+
 	Route::group(['prefix' => 'products'], function()
 	{
 		Route::get('',  ['as' => 'products.index', 'uses' => 'AdminProductsController@index']);
@@ -45,7 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'where' => ['id' => '
 });
 
 Route::get('/', 'StoreController@index');
-Route::get('/home', 'StoreController@index');
+Route::get('/home',  ['as' => 'home', 'uses' =>'StoreController@index']);
 Route::get('category/{id}', ['as' => 'store.category', 'uses' => 'StoreController@productsCategory']);
 Route::get('product/{id}', ['as' => 'store.product', 'uses' => 'StoreController@productDetail']);
 Route::get('tag/{id}', ['as' => 'store.tag', 'uses' => 'StoreController@porudctTag']);
