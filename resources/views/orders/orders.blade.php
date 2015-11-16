@@ -1,8 +1,8 @@
-@extends('store.store')
+@extends('app')
 
 @section('content')
 <div class="container">
-		<h1>Meus Pedidos</h1>
+		<h1>Pedidos</h1>
 		<br>
 		<table class="table">
 			<tr>
@@ -10,6 +10,7 @@
 				<th>Items</th>
 				<th>Valor</th>
 				<th>Status</th>
+				<th>Action</th>
 			</tr>	
 			
 			@foreach($orders as $order)
@@ -29,11 +30,13 @@
 				</td>
 				<td>
 					{{ $order->status->descricao }}
-				</td>			
-				
+				</td>
+				<td>
+					<a href="{{ route('orders.edit',['id'=> $order->id]) }}">Edit</a>
+				</td>
 			</tr>	
 			@endforeach			
 		</table>		
-		{!! $orders->render() !!} 	
+		{!! $orders->render() !!}
 	</div>			
 @stop

@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryTableSeeder::class);
         $this->call(TagTableSeeder::class);
         $this->call(ProductTagTableSeeder::class);
-         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        $this->call(StatusTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         Model::reguard();
     }
 }

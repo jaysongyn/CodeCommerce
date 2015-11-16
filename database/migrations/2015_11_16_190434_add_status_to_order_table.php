@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsAdminToUsersTable extends Migration
+class AddStatusToOrderTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,9 @@ class AddIsAdminToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('is_admin')->default(0);
+        Schema::table('orders', function (Blueprint $table) {
+            $table->integer('status_id')->unsigned();
+            $table->foreign('status_id')->references('id')->on('status');
         });
     }
 
@@ -24,8 +25,8 @@ class AddIsAdminToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            Schema::drop('product_tag');
+        Schema::table('orders', function (Blueprint $table) {
+            //
         });
     }
 }

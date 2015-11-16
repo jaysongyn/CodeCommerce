@@ -23,7 +23,14 @@ Route::group(['prefix' => 'admin', 'middleware' =>['auth','admin'], 'where' => [
 		Route::get('{id}/edit',  ['as' => 'categories.edit', 'uses' => 'AdminCategoriesController@edit']);
 		Route::post('',  ['as' => 'categories.store', 'uses' => 'AdminCategoriesController@store']);
 		Route::get('create',  ['as' => 'categories.create', 'uses' => 'AdminCategoriesController@create']);
-	});	-
+	});
+
+	Route::group(['prefix' => 'orders'], function()
+	{
+		Route::get('', ['as' => 'orders.index', 'uses' => 'AccountController@allOrders']);
+		Route::get('{id}/edit',  ['as' => 'orders.edit', 'uses' => 'AccountController@edit']);
+		Route::put('{id}/update',  ['as' => 'orders.update', 'uses' => 'AccountController@update']);
+	});
 
 	Route::group(['prefix' => 'products'], function()
 	{

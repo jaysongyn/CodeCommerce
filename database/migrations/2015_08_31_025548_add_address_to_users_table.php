@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddIsAdminToUsersTable extends Migration
+class AddAddressToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,13 @@ class AddIsAdminToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('is_admin')->default(0);
+            $table->text('logradouro');
+            $table->string('numero');
+            $table->text('bairro');
+            $table->text('cidade');
+            $table->string('uf', 2);
+            $table->string('cep',8);
+
         });
     }
 
@@ -25,7 +31,7 @@ class AddIsAdminToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            Schema::drop('product_tag');
-        });
+            $table->dropColumn(['logradouro','numero','bairro','cidade','uf','cep']);
+                   });
     }
 }

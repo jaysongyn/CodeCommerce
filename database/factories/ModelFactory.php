@@ -42,6 +42,12 @@ $factory->define(CodeCommerce\Tag::class, function ($faker) {
     ];
 });
 
+$factory->define(CodeCommerce\Status::class, function ($faker) {
+    return [
+        'descricao' => $faker->word()
+    ];
+});
+
 $factory->define(CodeCommerce\ProductTag::class, function ($faker) {
     return [
         'product_id' => $faker->numberBetween(1,10),

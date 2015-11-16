@@ -45,7 +45,49 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Confirm Password</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
+								<input type="password" class="form-control" name="password_confirmation" >
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">logradouro</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="logradouro" value="{{ old('logradouro') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Numero</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="numero" value="{{ old('numero') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Bairro</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="bairro" value="{{ old('bairro') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">Cidade</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}"s>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">UF</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="uf" value="{{ old('uf') }}">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-md-4 control-label">CEP</label>
+							<div class="col-md-6">
+								<input type="text" class="form-control" name="cep" value="{{ old('cep') }}">
 							</div>
 						</div>
 
