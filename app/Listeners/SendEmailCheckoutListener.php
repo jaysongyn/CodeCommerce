@@ -1,5 +1,4 @@
-    <?php
-
+<?php
 namespace CodeCommerce\Listeners;
 
 use CodeCommerce\Events\CheckoutEvent;
