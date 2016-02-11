@@ -48,10 +48,7 @@ Route::group(['prefix' => 'admin', 'middleware' =>['auth','admin'], 'where' => [
 			Route::post('store/{id}/product',  ['as' => 'products.images.store', 'uses' => 'AdminProductsController@storeImage']);
 			Route::get('destroy/{id}/image',  ['as' => 'products.images.destroy', 'uses' => 'AdminProductsController@destroyImage']);
 		});	
-
-	});	
-
-	
+	});
 });
 
 Route::get('/', 'StoreController@index');
